@@ -12,7 +12,7 @@ const ServiceCard = ({ title, number }) => {
 
 const Services = () => {
   return (
-    <div className="bg-gray-900 text-white py-16">
+    <div className="bg-gray-900 text-white py-4">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-4 gap-6">
           <ServiceCard title="Schedule a Meeting With Us And Discuss The Your Requirement" number="01" />
