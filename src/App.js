@@ -34,7 +34,6 @@ function App() {
           path="/"
           element={
             <>
-              {/* Hero Section with a Left-to-Right Fade In */}
               <motion.div
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
