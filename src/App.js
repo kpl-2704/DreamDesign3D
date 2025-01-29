@@ -31,7 +31,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route
-          path="/home"
+          path="/"
           element={
             <>
               {/* Hero Section with a Left-to-Right Fade In */}
