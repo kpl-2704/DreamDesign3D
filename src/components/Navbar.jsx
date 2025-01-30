@@ -5,11 +5,11 @@ const Navbar = () => {
   return (
     <nav className="bg-white text-gray-800 py-4 px-6 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to={"/home"}>
+        <Link to={"/"}>
           <div className="text-2xl font-bold text-gray-800">DREAM DESIGN 3D</div>
         </Link>
         <div className="flex gap-6 items-center">
-          <a href="/home" className="hover:text-gray-500">
+          <a href="/" className="hover:text-gray-500">
             Home
           </a>
           <a href="/about_us" className="hover:text-gray-500">

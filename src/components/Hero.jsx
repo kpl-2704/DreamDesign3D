@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -16,8 +17,13 @@ const Hero = () => {
             We provide the best architectural design, construction, and building maintenance services to you.
           </p>
           <div className="flex gap-4">
-            <button className="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600">Our Services</button>
-            <button className="border border-white px-6 py-3 rounded-md hover:bg-white hover:text-black">View Project</button>
+            <Link to={"/services"}>
+              <button className="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600">Our Services</button>
+            </Link>
+            <Link to={"/projects"}>
+              {" "}
+              <button className="border border-white px-6 py-3 rounded-md hover:bg-white hover:text-black">View Project</button>
+            </Link>
           </div>
           <div className="mt-12 space-y-4 text-sm">
             <div className="flex items-center gap-2">

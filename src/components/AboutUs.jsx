@@ -5,7 +5,8 @@ const AboutUs = () => {
     <div className="bg-white text-gray-800 py-4">
       <div className="h-40 bg-black flex items-center justify-center mb-6">
         <h1 className="text-4xl font-bold text-white  text-center mb-8">
-          About <br /> Dream Design 3D
+          About <br />
+          Dream Design 3D
         </h1>
       </div>
 

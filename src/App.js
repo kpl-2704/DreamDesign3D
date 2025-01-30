@@ -13,6 +13,7 @@ import ContactInfo from "./components/ContactInfo";
 import Footer from "./components/Footer";
 import "./index.css"; // Tailwind CSS file
 import ConstructionServices from "./components/Services/ConstructionService";
+import AboutUs from "./components/AboutUs";
 
 // Define restricted routes
 const restrictedRoutes = ["/restricted"];
@@ -120,6 +121,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/contact_us" element={<ContactInfo />} />
         <Route path="/construction" element={<ConstructionServices />} />
+        <Route path="/about_us" element={<AboutUs />} />
 
         {/* Restricted Route Example */}
         <Route
