@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const categories = [
   "All",
@@ -85,27 +85,10 @@ const Gallery = () => {
         {/* Lightbox */}
         {isOpen && filteredImages.length > 0 && (
           <Lightbox
-            mainSrc={filteredImages[lightboxIndex].src}
-            nextSrc={
-              filteredImages[(lightboxIndex + 1) % filteredImages.length].src
-            }
-            prevSrc={
-              filteredImages[
-                (lightboxIndex + filteredImages.length - 1) %
-                  filteredImages.length
-              ].src
-            }
-            onCloseRequest={() => setIsOpen(false)}
-            onMovePrevRequest={() =>
-              setLightboxIndex(
-                (lightboxIndex + filteredImages.length - 1) %
-                  filteredImages.length
-              )
-            }
-            onMoveNextRequest={() =>
-              setLightboxIndex((lightboxIndex + 1) % filteredImages.length)
-            }
-            imageCaption={filteredImages[lightboxIndex].category}
+            open={isOpen}
+            close={() => setIsOpen(false)}
+            index={lightboxIndex}
+            slides={filteredImages.map((img) => ({ src: img.src }))}
           />
         )}
       </div>
