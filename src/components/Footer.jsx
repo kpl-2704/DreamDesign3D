@@ -1,89 +1,106 @@
 import React from "react";
+import { FaLinkedin, FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Logo and About Section */}
+    <footer className="bg-gray-900 text-white py-14">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+        {/* Brand Info */}
         <div>
-          <h2 className="text-lg font-bold">DREAM DESIGN 3D</h2>
-          <p className="text-sm mt-4">
-            We have the confidence to provide the best service for you, with the support of Professional and Certified HR that
-            we currently have and the high-quality materials we use and structured work techniques, we will be able to realize
-            timely completion of work.
+          <h2 className="text-2xl font-bold text-orange-500">DreamDesign3D</h2>
+          <p className="mt-4 text-sm text-gray-300 leading-relaxed">
+            Delivering high-quality architectural and construction solutions
+            across India with a passion for innovation and precision.
           </p>
-          <div className="flex gap-4 mt-4">
-            {/* Social Media Icons */}
-            <a href="#" className="text-gray-400 hover:text-white">
-              <a className="fab fa-linkedin" />
+          <div className="flex mt-4 space-x-4 text-xl text-gray-400">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaLinkedin />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <a className="fab fa-instagram" />
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaInstagram />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <a className="fab fa-facebook" />
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaFacebook />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <a className="fab fa-twitter" />
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaTwitter />
             </a>
           </div>
         </div>
 
-        {/* Office Section */}
+        {/* Office */}
         <div>
-          <h3 className="text-lg font-bold">Office</h3>
-          <p className="text-sm mt-4">Opposite of Bank Of Baroda Branch, Arvi, Ta. Arvi, Di. Wardha - 442201</p>
-        </div>
-
-        {/* Contact Section */}
-        <div>
-          <h3 className="text-lg font-bold">Contact</h3>
-          <p className="text-sm mt-4">
-            Email: <a href="mailto:dreamdesign3d@gmail.com"> dreamdesign3d@gmail.com</a>
+          <h3 className="text-lg font-semibold mb-2">Office</h3>
+          <p className="text-sm text-gray-300">
+            Opp. Bank Of Baroda,
             <br />
-            Phone: (+91) 823-7872-906
+            Arvi, Dist. Wardha,
+            <br />
+            Maharashtra - 442201
           </p>
         </div>
 
-        {/* Links and Newsletter Section */}
+        {/* Contact */}
         <div>
-          <h3 className="text-lg font-bold">Subscribe To Our Newsletter</h3>
-          <form className="mt-4 flex">
+          <h3 className="text-lg font-semibold mb-2">Contact</h3>
+          <p className="text-sm text-gray-300">
+            <span>Email:</span>{" "}
+            <a
+              href="mailto:dreamdesign3d@gmail.com"
+              className="underline hover:text-orange-400"
+            >
+              dreamdesign3d@gmail.com
+            </a>
+            <br />
+            <span>Phone:</span> +91 82378 72906
+          </p>
+        </div>
+
+        {/* Newsletter */}
+        <div>
+          <h3 className="text-lg font-semibold mb-2">Subscribe</h3>
+          <form className="mt-4 flex items-center">
             <input
               type="email"
-              placeholder="Enter your email address"
-              className="p-2 flex-grow bg-gray-800 text-white rounded-l-md"
+              placeholder="Your email"
+              className="flex-grow px-4 py-2 rounded-l bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
-            <button type="submit" className="bg-orange-500 p-2 rounded-r-md text-white">
+            <button
+              type="submit"
+              className="bg-orange-500 px-4 py-2 rounded-r text-white hover:bg-orange-600 transition"
+            >
               →
             </button>
           </form>
-          <ul className="mt-4 text-sm">
-            <li>
-              <a href="#" className="hover:underline">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Service
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Project
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
 
-      <div className="text-center mt-8 text-sm text-gray-500">© 2025 DreamDesign3D. All Rights Reserved</div>
+      <div className="text-center mt-10 text-sm text-gray-500">
+        © {year} <span className="font-semibold">DreamDesign3D</span>. All
+        rights reserved.
+      </div>
     </footer>
   );
 };

@@ -1,66 +1,111 @@
-import React, { useState } from "react";
-
-const testimonials = [
-  {
-    quote:
-      "I am very satisfied with the services. Their team is very professional and efficient in completing our project on time and at a very affordable cost. The quality of their work is very good, and I highly recommend this company for any construction project.",
-    name: "Atul Waghmare",
-    designation: "Dentist, Sai Nagar, Arvi"
-  },
-  {
-    quote: "The team provided exceptional service and delivered our project beyond expectations. Highly recommended!",
-    name: "Rajesh Sharma",
-    designation: "Business Owner, Delhi"
-  },
-  {
-    quote: "Their expertise in construction is outstanding. Our home renovation was seamless and stress-free.",
-    name: "Pooja Mehta",
-    designation: "Architect, Mumbai"
-  },
-  {
-    quote:
-      "Their expertise in construction is outstanding. Their service is excellent and also too much budget-friendly, Will suggest to take a chance to work with them.",
-    name: "Ashok Mehta",
-    designation: "Software Developer, Mumbai"
-  }
-];
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Testimonial = () => {
+  const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const res = await axios.get("/api/admin/testimonials/public");
+        setTestimonials(res.data);
+      } catch (err) {
+        setTestimonials([]);
+      }
+    };
+    fetchTestimonials();
+  }, []);
+
   const nextTestimonial = () => {
-    setCurrentIndex(prevIndex => (prevIndex + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex(prevIndex => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1));
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   };
 
-  return (
-    <section className="bg-gray-100 text-gray-800 py-8">
-      <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">What Our Clients Say</h2>
-        <p className="text-sm md:text-lg italic mb-6 text-gray-600">"{testimonials[currentIndex].quote}"</p>
-        <h3 className="font-semibold text-lg">{testimonials[currentIndex].name}</h3>
-        <p className="text-sm text-gray-500">{testimonials[currentIndex].designation}</p>
-        <div className="flex justify-center items-center gap-4 mt-6">
-          <button
-            onClick={prevTestimonial}
-            className="px-4 py-2 bg-gray-300 rounded-full text-gray-700 hover:bg-gray-400 transition-colors"
-          >
-            Prev
-          </button>
-          <div className="flex gap-2">
-            {testimonials.map((_, index) => (
-              <div key={index} className={`w-8 h-8 rounded-full ${currentIndex === index ? "bg-gray-700" : "bg-gray-400"}`} />
-            ))}
+  if (!testimonials.length) {
+    return (
+      <section className="bg-gray-100 py-16 text-gray-800">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            What Our Clients Say
+          </h2>
+          <div className="relative max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 transition-all duration-500 ease-in-out text-center">
+            <p className="text-lg italic text-gray-600 mb-6">
+              No testimonials available yet.
+            </p>
           </div>
-          <button
-            onClick={nextTestimonial}
-            className="px-4 py-2 bg-gray-300 rounded-full text-gray-700 hover:bg-gray-400 transition-colors"
-          >
-            Next
-          </button>
+        </div>
+      </section>
+    );
+  }
+
+  const current = testimonials[currentIndex];
+
+  return (
+    <section className="bg-gray-100 py-16 text-gray-800">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-10">
+          What Our Clients Say
+        </h2>
+
+        <div className="relative max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 transition-all duration-500 ease-in-out">
+          <p className="text-lg italic text-gray-600 mb-6">"{current.quote}"</p>
+          <h3 className="text-xl font-semibold text-gray-900">
+            {current.clientName}
+          </h3>
+          <p className="text-sm text-gray-500 mb-2">
+            {current.project?.title || "Client"}
+          </p>
+          {typeof current.rating === "number" && (
+            <div className="flex items-center mb-4">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  className={
+                    i < current.rating ? "text-yellow-400" : "text-gray-300"
+                  }
+                >
+                  ★
+                </span>
+              ))}
+              <span className="ml-2 text-sm text-gray-600">
+                {current.rating}/5
+              </span>
+            </div>
+          )}
+
+          {/* Navigation */}
+          <div className="flex justify-between items-center mt-8">
+            <button
+              onClick={prevTestimonial}
+              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-gray-700 transition"
+              disabled={testimonials.length < 2}
+            >
+              ← Prev
+            </button>
+            <div className="flex gap-2">
+              {testimonials.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`h-2 w-2 rounded-full ${
+                    idx === currentIndex ? "bg-indigo-600" : "bg-gray-300"
+                  }`}
+                ></span>
+              ))}
+            </div>
+            <button
+              onClick={nextTestimonial}
+              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-gray-700 transition"
+              disabled={testimonials.length < 2}
+            >
+              Next →
+            </button>
+          </div>
         </div>
       </div>
     </section>

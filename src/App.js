@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { motion } from "framer-motion"; // Import framer-motion
 import Navbar from "./components/Navbar";
+import WhatsAppWidget from "./components/WhatsAppWidget";
+import ChatBot from "./components/ChatBot";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import Experience from "./components/Experience";
@@ -14,6 +15,15 @@ import Footer from "./components/Footer";
 import "./index.css"; // Tailwind CSS file
 import ConstructionServices from "./components/Services/ConstructionService";
 import AboutUs from "./components/AboutUs";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import SitesGallery from "./pages/admin/SitesGallery";
+import BuildingServices from "./components/Services/BuildingServices";
+import InteriorDesign from "./components/Services/InteriorDesign";
+import ArchitectureDesign from "./components/Services/ArchitectureDesign";
+import RenovationServices from "./components/Services/RenovationServices";
+import AllProjects from "./components/AllProjects";
+import Gallery from "./components/Gallery";
 
 // Define restricted routes
 const restrictedRoutes = ["/restricted"];
@@ -25,95 +35,34 @@ const RestrictedRoute = ({ path, element }) => {
   return isRestricted ? <Navigate to="/access-denied" replace /> : element;
 };
 
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("adminToken");
+  return token ? children : <Navigate to="/admin/login" />;
+};
+
 function App() {
   return (
     <div className="min-h-screen bg-gray-900 p-4">
       <Navbar />
+      <WhatsAppWidget />
+      <ChatBot />
       <Routes>
         {/* Public Routes */}
         <Route
           path="/"
           element={
             <>
-              <motion.div
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                viewport={{ once: true }}
-              >
-                <Hero />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                viewport={{ once: true }}
-              >
-                <Stats />
-              </motion.div>
-
+              <Hero />
+              <Stats />
               <hr className="text-xl" />
-
-              {/* Experience Section with a Bounce Effect */}
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 10,
-                }}
-                viewport={{ once: true }}
-              >
-                <Experience />
-              </motion.div>
-
+              <Experience />
               <hr />
-
-              {/* Projects Section with a Smooth Fade and Slide Effect */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: "easeInOut" }}
-                viewport={{ once: true }}
-              >
-                <Projects />
-              </motion.div>
-
+              <Projects />
               <hr />
-
-              {/* Testimonial Section with Zoom In Effect */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeOut",
-                }}
-                viewport={{ once: true }}
-              >
-                <Testimonial />
-              </motion.div>
-
+              <Testimonial />
               <hr />
-
-              {/* QuoteRequest Section with a Bounce Effect */}
               <div className="flex justify-center m-auto p-8">
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 12,
-                  }}
-                  viewport={{ once: true }}
-                >
-                  <QuoteRequest />
-                </motion.div>
+                <QuoteRequest />
               </div>
             </>
           }
@@ -121,7 +70,14 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/contact_us" element={<ContactInfo />} />
         <Route path="/construction" element={<ConstructionServices />} />
+        <Route path="/building" element={<BuildingServices />} />
+        <Route path="/interior" element={<InteriorDesign />} />
+        <Route path="/architect" element={<ArchitectureDesign />} />
+        <Route path="/renovate" element={<RenovationServices />} />
         <Route path="/about_us" element={<AboutUs />} />
+        <Route path="/sites" element={<SitesGallery />} />
+        <Route path="/all-projects" element={<AllProjects />} />
+        <Route path="/gallery" element={<Gallery />} />
 
         {/* Restricted Route Example */}
         <Route
@@ -136,6 +92,17 @@ function App() {
 
         {/* Access Denied Page */}
         {/* <Route path="/access-denied" element={<AccessDenied />} /> */}
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Catch-All Route */}
         <Route path="*" element={<h1>Page Not Found</h1>} />

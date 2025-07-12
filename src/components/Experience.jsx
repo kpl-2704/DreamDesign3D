@@ -2,29 +2,39 @@ import React from "react";
 
 const Experience = () => {
   return (
-    <div className="bg-gray-100 text-gray-800 py-16">
-      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
+    <section className="bg-gray-50 text-gray-800 py-16">
+      <div className="container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
+        {/* Text Block */}
+        <div className="flex-1 text-center lg:text-left">
+          <h2 className="text-4xl font-extrabold mb-4 text-black leading-tight">
+            Over <span className="text-indigo-600">5+ Years</span> of Industry
+            Excellence
+          </h2>
+          <p className="mb-6 text-gray-600 text-lg leading-relaxed">
+            We specialize in delivering architectural designs, smart
+            renovations, and reliable construction work — on time and with
+            quality.
+          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-center lg:justify-start">
+            <div className="bg-indigo-100 text-indigo-800 px-5 py-3 rounded-lg font-semibold shadow-sm">
+              50+ Projects Completed
+            </div>
+            <div className="bg-green-100 text-green-800 px-5 py-3 rounded-lg font-semibold shadow-sm">
+              Certified & Trusted Team
+            </div>
+          </div>
+        </div>
+
+        {/* Image Block */}
         <div className="flex-1">
           <img
             src="https://thumbs.dreamstime.com/b/house-under-construction-blueprints-building-project-53360048.jpg"
-            alt="Engineers"
-            className="rounded-lg shadow-md"
+            alt="Under construction"
+            className="rounded-lg shadow-lg"
           />
         </div>
-        <div className="flex-1 text-center lg:text-left">
-          <h2 className="text-4xl font-bold mb-6">
-            5+ years
-            <br />
-            of experience!
-          </h2>
-          <p className="mb-8 text-gray-600">
-            We have a history of successful construction projects that have been in the industry for over 5 years. Our
-            contractors have a wealth of knowledge and skills that they have acquired over the years, making them experts in
-            their field.
-          </p>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

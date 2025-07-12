@@ -1,47 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
-  return (
-    <div className="relative h-[600px] bg-black">
-      <div className="absolute inset-0 bg-hero-pattern bg-cover bg-center opacity-50" />
+  const [banners, setBanners] = useState([]);
+  const [index, setIndex] = useState(0);
 
-      <div className="relative container mx-auto px-6 py-20">
-        <div className="max-w-2xl text-white">
-          <h1 className="text-5xl font-bold mb-4">
-            We Prepare
-            <br />
-            For The <span className="text-orange-500">Future</span>
-          </h1>
-          <p className="mb-8 text-lg">
-            We provide the best architectural design, construction, and building maintenance services to you.
-          </p>
-          <div className="flex gap-4">
-            <Link to={"/services"}>
-              <button className="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600">Our Services</button>
-            </Link>
-            <Link to={"/projects"}>
-              {" "}
-              <button className="border border-white px-6 py-3 rounded-md hover:bg-white hover:text-black">View Project</button>
-            </Link>
-          </div>
-          <div className="mt-12 space-y-4 text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-orange-500 rounded-full" />
-              <p>Quality Control System, 100% Satisfaction Guarantee</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-orange-500 rounded-full" />
-              <p>Highly Professional Staff, Accurate Testing Processes</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-orange-500 rounded-full" />
-              <p>Unrivalled Workmanship, Professional and Qualified</p>
-            </div>
-          </div>
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const res = await axios.get("/api/admin/banners");
+        setBanners(res.data);
+      } catch (err) {
+        setBanners([]);
+      }
+    };
+    fetchBanners();
+  }, []);
+
+  useEffect(() => {
+    if (index >= banners.length) {
+      setIndex(0);
+    }
+  }, [banners, index]);
+
+  const nextSlide = () => {
+    setIndex((prev) => {
+      const next = (prev + 1) % banners.length;
+      console.log("Next:", next, banners.length);
+      return next;
+    });
+  };
+  const prevSlide = () => {
+    setIndex((prev) => {
+      const prevIdx = (prev - 1 + banners.length) % banners.length;
+      console.log("Prev:", prevIdx, banners.length);
+      return prevIdx;
+    });
+  };
+
+  if (!banners.length) return null;
+
+  const currentBanner = banners[index];
+
+  return (
+    <section className="relative h-[90vh] overflow-hidden text-white">
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{ backgroundImage: `url(${currentBanner.image})` }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-60" />
+      </div>
+      <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+          {currentBanner.heading}
+        </h1>
+        <p className="text-md sm:text-lg max-w-xl mb-6">
+          {currentBanner.subtext}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+          <Link
+            to="/all-projects"
+            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded shadow transition"
+          >
+            View Projects
+          </Link>
+          <Link
+            to="/services"
+            className="bg-white hover:bg-gray-100 text-orange-600 font-semibold px-6 py-3 rounded shadow transition"
+          >
+            Explore Services
+          </Link>
         </div>
       </div>
-    </div>
+      <button
+        onClick={prevSlide}
+        className="z-20 absolute top-1/2 left-4 transform -translate-y-1/2 text-white hover:text-orange-500"
+        disabled={banners.length < 2}
+      >
+        Prev
+      </button>
+      <button
+        onClick={nextSlide}
+        className="z-20 absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:text-orange-500"
+        disabled={banners.length < 2}
+      >
+        Next
+      </button>
+    </section>
   );
 };
 
