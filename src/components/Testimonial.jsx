@@ -4,11 +4,11 @@ import axios from "axios";
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const API_BASE = process.env.REACT_APP_API_BASE || "";
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const API_BASE = process.env.REACT_APP_API_BASE || "";
         const res = await axios.get(
           `${API_BASE}/api/admin/testimonials/public`
         );
