@@ -19,12 +19,13 @@ const TestimonialsAdmin = () => {
   const [success, setSuccess] = useState("");
 
   const token = localStorage.getItem("adminToken");
+  const API_BASE = process.env.REACT_APP_API_BASE || "";
 
   const fetchTestimonials = async () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get("/api/admin/testimonials", {
+      const res = await axios.get(`${API_BASE}/api/admin/testimonials`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTestimonials(res.data);
@@ -36,7 +37,7 @@ const TestimonialsAdmin = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("/api/admin/projects", {
+      const res = await axios.get(`${API_BASE}/api/admin/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);
@@ -66,12 +67,16 @@ const TestimonialsAdmin = () => {
         delete data.project; // Remove project if empty
       }
       if (editingId) {
-        await axios.put(`/api/admin/testimonials/${editingId}`, data, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.put(
+          `${API_BASE}/api/admin/testimonials/${editingId}`,
+          data,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         setSuccess("Testimonial updated!");
       } else {
-        await axios.post("/api/admin/testimonials", data, {
+        await axios.post(`${API_BASE}/api/admin/testimonials`, data, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSuccess("Testimonial added!");
@@ -101,7 +106,7 @@ const TestimonialsAdmin = () => {
     setLoading(true);
     setError("");
     try {
-      await axios.delete(`/api/admin/testimonials/${id}`, {
+      await axios.delete(`${API_BASE}/api/admin/testimonials/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess("Testimonial deleted!");

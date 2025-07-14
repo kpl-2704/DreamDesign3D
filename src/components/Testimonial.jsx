@@ -8,7 +8,10 @@ const Testimonial = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await axios.get("/api/admin/testimonials/public");
+        const API_BASE = process.env.REACT_APP_API_BASE || "";
+        const res = await axios.get(
+          `${API_BASE}/api/admin/testimonials/public`
+        );
         setTestimonials(res.data);
       } catch (err) {
         setTestimonials([]);

@@ -21,12 +21,13 @@ const ProjectsAdmin = () => {
   const [success, setSuccess] = useState("");
 
   const token = localStorage.getItem("adminToken");
+  const API_BASE = process.env.REACT_APP_API_BASE || "";
 
   const fetchProjects = async () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get("/api/admin/projects", {
+      const res = await axios.get(`${API_BASE}/api/admin/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);
@@ -67,15 +68,19 @@ const ProjectsAdmin = () => {
         }
       });
       if (editingId) {
-        await axios.put(`/api/admin/projects/${editingId}`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.put(
+          `${API_BASE}/api/admin/projects/${editingId}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setSuccess("Project updated!");
       } else {
-        await axios.post("/api/admin/projects", formData, {
+        await axios.post(`${API_BASE}/api/admin/projects`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -105,7 +110,7 @@ const ProjectsAdmin = () => {
     setLoading(true);
     setError("");
     try {
-      await axios.delete(`/api/admin/projects/${id}`, {
+      await axios.delete(`${API_BASE}/api/admin/projects/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess("Project deleted!");

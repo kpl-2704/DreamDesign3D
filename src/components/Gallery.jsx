@@ -18,8 +18,9 @@ const Gallery = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const API_BASE = process.env.REACT_APP_API_BASE || "";
   useEffect(() => {
-    fetch("/api/gallery")
+    fetch(`${API_BASE}/api/gallery`)
       .then((res) => res.json())
       .then((data) => {
         setImages(data);

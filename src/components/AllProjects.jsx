@@ -24,7 +24,8 @@ const AllProjects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get("/api/admin/projects/public");
+        const API_BASE = process.env.REACT_APP_API_BASE || "";
+        const res = await axios.get(`${API_BASE}/api/admin/projects/public`);
         setProjects(res.data);
       } catch (err) {
         setProjects([]);

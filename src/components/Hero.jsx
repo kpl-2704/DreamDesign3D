@@ -9,7 +9,8 @@ const Hero = () => {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const res = await axios.get("/api/admin/banners");
+        const API_BASE = process.env.REACT_APP_API_BASE || "";
+        const res = await axios.get(`${API_BASE}/api/admin/banners`);
         setBanners(res.data);
       } catch (err) {
         setBanners([]);

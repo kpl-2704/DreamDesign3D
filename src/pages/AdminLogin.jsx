@@ -8,11 +8,15 @@ const AdminLogin = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const API_BASE = process.env.REACT_APP_API_BASE || "";
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("/api/admin/login", { username, password });
+      const res = await axios.post(`${API_BASE}/api/admin/login`, {
+        username,
+        password,
+      });
       localStorage.setItem("adminToken", res.data.token);
       navigate("/admin/dashboard");
     } catch (err) {

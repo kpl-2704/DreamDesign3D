@@ -16,12 +16,13 @@ const BannersAdmin = () => {
   const [success, setSuccess] = useState("");
 
   const token = localStorage.getItem("adminToken");
+  const API_BASE = process.env.REACT_APP_API_BASE || "";
 
   const fetchBanners = async () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get("/api/admin/banners");
+      const res = await axios.get(`${API_BASE}/api/admin/banners`);
       setBanners(res.data);
     } catch (err) {
       setError("Failed to fetch banners");
@@ -53,15 +54,19 @@ const BannersAdmin = () => {
       formData.append("subtext", form.subtext);
       if (form.image) formData.append("image", form.image);
       if (editingId) {
-        await axios.put(`/api/admin/banners/${editingId}`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.put(
+          `${API_BASE}/api/admin/banners/${editingId}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setSuccess("Banner updated!");
       } else {
-        await axios.post("/api/admin/banners", formData, {
+        await axios.post(`${API_BASE}/api/admin/banners`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -92,7 +97,7 @@ const BannersAdmin = () => {
     setLoading(true);
     setError("");
     try {
-      await axios.delete(`/api/admin/banners/${id}`, {
+      await axios.delete(`${API_BASE}/api/admin/banners/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess("Banner deleted!");

@@ -5,6 +5,8 @@ import TestimonialsAdmin from "./admin/TestimonialsAdmin";
 import BannersAdmin from "./admin/BannersAdmin";
 import { useEffect } from "react";
 
+let API_BASE = process.env.REACT_APP_API_BASE || "";
+
 const sections = [
   { key: "projects", label: "Projects" },
   { key: "testimonials", label: "Testimonials" },
@@ -37,7 +39,7 @@ function GalleryAdmin() {
 
   const fetchImages = () => {
     setLoading(true);
-    fetch("/api/gallery")
+    fetch(`${API_BASE}/api/gallery`)
       .then((res) => res.json())
       .then((data) => {
         setImages(data);
@@ -76,7 +78,7 @@ function GalleryAdmin() {
       body = JSON.stringify({ src: form.src, category: form.category });
       headers = { "Content-Type": "application/json" };
     }
-    fetch("/api/gallery", {
+    fetch(`${API_BASE}/api/gallery`, {
       method: "POST",
       headers,
       body,
@@ -95,7 +97,7 @@ function GalleryAdmin() {
 
   const handleDelete = (id) => {
     if (!window.confirm("Delete this image?")) return;
-    fetch(`/api/gallery/${id}`, { method: "DELETE" })
+    fetch(`${API_BASE}/api/gallery/${id}`, { method: "DELETE" })
       .then(() => fetchImages())
       .catch(() => setError("Failed to delete image"));
   };
@@ -198,7 +200,7 @@ function StatsAdmin() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/stats")
+    fetch(`${API_BASE}/api/stats`)
       .then((res) => res.json())
       .then((data) => {
         setForm({
@@ -223,7 +225,7 @@ function StatsAdmin() {
     setSaving(true);
     setSuccess(false);
     setError("");
-    fetch("/api/stats", {
+    fetch(`${API_BASE}/api/stats`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
