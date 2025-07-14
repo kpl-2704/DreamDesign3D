@@ -22,7 +22,7 @@ mongoose
 
 // Basic route
 app.get("/", (req, res) => {
-  res.send("API is running");
+  res.send("<h1>DreamDesign3D API is running</h1>");
 });
 
 const adminRoutes = require("./routes/admin");
