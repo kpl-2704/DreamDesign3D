@@ -27,32 +27,28 @@ const ArchitectureDesign = () => {
           {
             title: "Conceptual Design & Space Planning",
             icon: <FaDraftingCompass className="text-3xl text-indigo-600" />,
-            image:
-              "https://images.unsplash.com/photo-1604147495791-7ac5c0636b71?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/arch1.png",
             content:
               "We begin with form, function, and vision — producing schematic drawings and floor plans that establish design intent and usability.",
           },
           {
             title: "3D Visualization & Walkthroughs",
             icon: <FaBuilding className="text-3xl text-green-600" />,
-            image:
-              "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/arch2.png",
             content:
               "Our lifelike renderings and virtual tours help clients visualize the final output before construction even begins.",
           },
           {
             title: "Sanction Drawings & Compliance",
             icon: <FaGavel className="text-3xl text-red-600" />,
-            image:
-              "https://images.unsplash.com/photo-1577903187699-345f64630b6f?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/arch3.png",
             content:
               "We handle building sanction approvals, ensuring your plans are aligned with DTP, municipality, or development authority norms.",
           },
           {
             title: "Execution Drawings & BOQs",
             icon: <FaClipboardCheck className="text-3xl text-yellow-500" />,
-            image:
-              "https://images.unsplash.com/photo-1583845116313-8b5b42ebad3c?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/arch4.png",
             content:
               "Detailed working drawings, sections, elevations, and material quantity estimates are delivered to support site execution.",
           },
@@ -72,7 +68,7 @@ const ArchitectureDesign = () => {
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg shadow-lg w-full object-cover h-64"
+                className="rounded-lg shadow-lg w-full object-cover h-[400px]"
               />
             </div>
           </div>

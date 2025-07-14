@@ -27,32 +27,28 @@ const InteriorDesign = () => {
           {
             title: "Custom Interior Planning",
             icon: <FaRulerCombined className="text-3xl text-indigo-600" />,
-            image:
-              "https://images.unsplash.com/photo-1615874959474-d609969a3a4d?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/interior1.png",
             content:
               "We start with understanding your lifestyle, space utilization needs, and aesthetic vision — translating it into a personalized layout.",
           },
           {
             title: "Color, Texture & Furnishing",
             icon: <FaPalette className="text-3xl text-pink-600" />,
-            image:
-              "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/interior2.png",
             content:
               "Our team helps select the perfect color palettes, finishes, and textiles that resonate with your brand or personal style.",
           },
           {
             title: "Modular & Space-Saving Solutions",
             icon: <FaCouch className="text-3xl text-yellow-600" />,
-            image:
-              "https://images.unsplash.com/photo-1622571736190-3a8cd87c358e?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/interior3.png",
             content:
               "We design intelligent modular wardrobes, kitchen units, and furniture layouts that make the most of every inch.",
           },
           {
             title: "Lighting, Decor & Final Styling",
             icon: <FaLightbulb className="text-3xl text-orange-500" />,
-            image:
-              "https://images.unsplash.com/photo-1616627988476-14c3d5f27b91?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/interior4.png",
             content:
               "The final look is achieved through smart lighting, art, and accessories — creating warmth, contrast, and a complete vibe.",
           },
@@ -72,7 +68,7 @@ const InteriorDesign = () => {
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg shadow-lg w-full object-cover h-64"
+                className="rounded-lg shadow-lg w-full object-cover h-[400px]"
               />
             </div>
           </div>

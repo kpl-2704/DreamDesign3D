@@ -12,40 +12,35 @@ const serviceSections = [
   {
     title: "Construction Planning & Site Design",
     icon: <FaDraftingCompass className="text-3xl text-indigo-600" />,
-    image:
-      "https://images.unsplash.com/photo-1581090700227-1e8f12d92d32?auto=format&fit=crop&w=1170&q=80",
+    image: "/assets/constr4.jpeg",
     content:
       "We begin every project with a solid plan. Our team works with you to understand your needs and vision, then develops detailed site designs that meet both functional and aesthetic requirements. All plans comply with local regulations.",
   },
   {
     title: "Efficient Construction Management",
     icon: <FaProjectDiagram className="text-3xl text-indigo-600" />,
-    image:
-      "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=1170&q=80",
+    image: "/assets/constr5.jpeg",
     content:
       "Timely project delivery is ensured through robust planning and management tools. Our project managers handle logistics, progress, and communication efficiently.",
   },
   {
     title: "Sustainable Home Construction",
     icon: <FaLeaf className="text-3xl text-green-600" />,
-    image:
-      "https://images.unsplash.com/photo-1581093588401-1573d736d6c0?auto=format&fit=crop&w=1170&q=80",
+    image: "/assets/constr7.jpeg",
     content:
       "We promote eco-friendly design and construction by integrating sustainable materials and practices to minimize carbon footprints and maximize energy efficiency.",
   },
   {
     title: "Quality Assurance & Materials",
     icon: <FaHardHat className="text-3xl text-yellow-600" />,
-    image:
-      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1170&q=80",
+    image: "/assets/costru.jpeg",
     content:
       "We use top-grade materials and conduct regular inspections to meet compliance standards, delivering durability and safety in every structure we build.",
   },
   {
     title: "Project Completion & Client Handover",
     icon: <FaKey className="text-3xl text-blue-600" />,
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1170&q=80",
+    image: "/assets/constr1.jpeg",
     content:
       "Your satisfaction is our success. Post-completion, we review the build with you and hand over the keys only once every detail meets your expectations.",
   },
@@ -84,11 +79,11 @@ const ConstructionServices = () => {
             </div>
 
             {/* Image */}
-            <div className="flex-1">
+            <div className="flex-1 object-cover">
               <img
                 src={section.image}
                 alt={section.title}
-                className="rounded-lg shadow-lg w-full object-cover h-64"
+                className="rounded-lg shadow-lg w-full object-cover h-fit"
               />
             </div>
           </div>

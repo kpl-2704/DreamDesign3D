@@ -27,32 +27,28 @@ const BuildingServices = () => {
           {
             title: "Residential & Commercial Construction",
             icon: <FaBuilding className="text-3xl text-indigo-600" />,
-            image:
-              "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/elevation1.jpeg",
             content:
               "Whether it’s a dream home or a commercial space, our team delivers functional, modern, and regulation-compliant buildings tailored to your needs.",
           },
           {
             title: "Structural Design & Safety Compliance",
             icon: <FaCheckCircle className="text-3xl text-green-600" />,
-            image:
-              "https://images.unsplash.com/photo-1610901806813-9b16142ec2cd?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/Elevation.jpeg",
             content:
               "We work with certified engineers to ensure every building structure is safe, seismic-resistant, and aligns with local building codes and laws.",
           },
           {
             title: "Material Management & Quality Execution",
             icon: <FaTools className="text-3xl text-yellow-600" />,
-            image:
-              "https://images.unsplash.com/photo-1600585154217-8a8b6c14091e?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/constr8.jpeg",
             content:
               "We source top-grade cement, steel, tiles, and finishing materials and ensure quality checks throughout all construction phases.",
           },
           {
             title: "Site Coordination & Project Tracking",
             icon: <FaMapMarkedAlt className="text-3xl text-blue-600" />,
-            image:
-              "https://images.unsplash.com/photo-1608245443225-4b9b896089bb?auto=format&fit=crop&w=1170&q=80",
+            image: "/assets/constr9.jpeg",
             content:
               "Real-time updates, cost transparency, and on-site supervision help clients stay in control of progress from start to handover.",
           },
@@ -72,7 +68,7 @@ const BuildingServices = () => {
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg shadow-lg w-full object-cover h-64"
+                className="rounded-lg shadow-lg w-full object-cover h-[500px]"
               />
             </div>
           </div>

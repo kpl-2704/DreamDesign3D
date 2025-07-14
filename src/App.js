@@ -6,7 +6,7 @@ import ChatBot from "./components/ChatBot";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import Experience from "./components/Experience";
-import Services from "./Pages/Services";
+import Services from "./components/Services";
 import Projects from "./components/Projects";
 import Testimonial from "./components/Testimonial";
 import QuoteRequest from "./components/QuoteRequest";
@@ -56,6 +56,8 @@ function App() {
               <Stats />
               <hr className="text-xl" />
               <Experience />
+              <hr />
+              <Services />
               <hr />
               <Projects />
               <hr />
