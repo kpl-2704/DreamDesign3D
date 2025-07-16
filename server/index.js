@@ -6,8 +6,15 @@ const path = require("path");
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// ✅ Proper CORS setup for Vercel frontend
+app.use(
+  cors({
+    origin: "https://dream-design3-d.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -20,22 +27,16 @@ mongoose
   .then(() => console.log("MongoDB Atlas connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Basic route
+// Test route
 app.get("/", (req, res) => {
   res.send("<h1>DreamDesign3D API is running</h1>");
 });
 
-const adminRoutes = require("./routes/admin");
-app.use("/api/admin", adminRoutes);
-
-const whatsappRoutes = require("./routes/whatsapp");
-app.use("/api/whatsapp", whatsappRoutes);
-
-const statsRoutes = require("./routes/stats");
-app.use("/api/stats", statsRoutes);
-
-const galleryRoutes = require("./routes/gallery");
-app.use("/api/gallery", galleryRoutes);
+// Routes
+app.use("/api/admin", require("./routes/admin"));
+app.use("/api/whatsapp", require("./routes/whatsapp"));
+app.use("/api/stats", require("./routes/stats"));
+app.use("/api/gallery", require("./routes/gallery"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
